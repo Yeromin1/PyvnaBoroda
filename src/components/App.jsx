@@ -56,3 +56,16 @@ export default function App() {
     </>
   );
 }
+
+// import { HiUser } from "react-icons/hi";
+// import { FcAcceptDatabase } from "react-icons/fc";
+
+// export default function App({ name }) {
+//   return (
+//     <div>
+//       <p>
+//         <FcAcceptDatabase className="my-icon" size="24" /> {name}
+//       </p>
+//     </div>
+//   );
+// }
