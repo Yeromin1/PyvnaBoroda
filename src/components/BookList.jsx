@@ -1,4 +1,4 @@
-export default function BookList({ books }) {
+const BookList = ({ books }) => {
   return (
     <ul>
       {books.map((book) => {
@@ -6,4 +6,6 @@ export default function BookList({ books }) {
       })}
     </ul>
   );
-}
+};
+
+export default BookList;

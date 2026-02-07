@@ -39,7 +39,7 @@
 import Alert from "./Alert.jsx";
 import Header from "./Header/Header.jsx";
 
-export default function App() {
+const App = () => {
   return (
     <>
       <Header />
@@ -57,7 +57,9 @@ export default function App() {
       </Alert>
     </>
   );
-}
+};
+
+export default App;
 
 // import { HiUser } from "react-icons/hi";
 // import { FcAcceptDatabase } from "react-icons/fc";

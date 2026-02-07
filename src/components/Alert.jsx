@@ -51,7 +51,7 @@
 import clsx from "clsx";
 import css from "./Alert.module.css";
 
-export default function Alert({ variant, outlined, elevated, children }) {
+const Alert = ({ variant, outlined, elevated, children }) => {
   return (
     <p
       className={clsx(
@@ -63,4 +63,6 @@ export default function Alert({ variant, outlined, elevated, children }) {
       {children}
     </p>
   );
-}
+};
+
+export default Alert;

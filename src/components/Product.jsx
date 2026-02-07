@@ -1,4 +1,4 @@
-export default function Product({ name, imgUrl, price }) {
+const Product = ({ name, imgUrl, price }) => {
   return (
     <>
       <h2>{name}</h2>
@@ -6,4 +6,6 @@ export default function Product({ name, imgUrl, price }) {
       <p>Price: {price} credits</p>
     </>
   );
-}
+};
+
+export default Product;
