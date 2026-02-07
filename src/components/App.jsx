@@ -37,10 +37,12 @@
 // }
 
 import Alert from "./Alert.jsx";
+import Header from "./Header/Header.jsx";
 
 export default function App() {
   return (
     <>
+      <Header />
       <Alert variant="info">
         Would you like to browse our recommended products?
       </Alert>
