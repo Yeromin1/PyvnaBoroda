@@ -1,4 +1,10 @@
 // import Product from "./Product.jsx";
+// import { useState, useEffect } from "react";
+
+import { useState } from "react";
+import LangSwitcher from "./LangSwitcher/LangSwitcher";
+import LoginForm from "./LoginForm/LoginForm";
+import SearchBar from "./SearchBar/SearchBar ";
 
 // export default function App() {
 //   return (
@@ -275,7 +281,6 @@
 //   );
 // };
 
-import { useState, useEffect } from "react";
 // const App = () => {
 //   const [first, setFirst] = useState(0);
 //   const [second, setSecond] = useState(0);
@@ -300,25 +305,46 @@ import { useState, useEffect } from "react";
 //   );
 // };
 
-const App = () => {
-  const [clicks, setClicks] = useState(() => {
-    const savedClicks = window.localStorage.getItem("saved-clicks");
-    if (savedClicks !== null) {
-      return Number(savedClicks);
-    }
-    return 0;
-  });
+// сохранение и считывание данных с localStorage
+// const App = () => {
+//   const [clicks, setClicks] = useState(() => {
+//     const savedClicks = window.localStorage.getItem("saved-clicks");
+//     if (savedClicks !== null) {
+//       return Number(savedClicks);
+//     }
+//     return 0;
+//   });
 
-  useEffect(() => {
-    window.localStorage.setItem("saved-clicks", clicks);
-  }, [clicks]);
+//   useEffect(() => {
+//     window.localStorage.setItem("saved-clicks", clicks);
+//   }, [clicks]);
+
+//   return (
+//     <div>
+//       <button onClick={() => setClicks(clicks + 1)}>
+//         You clicked {clicks} times
+//       </button>
+//       <button onClick={() => setClicks(0)}>Reset</button>
+//     </div>
+//   );
+// };
+
+const App = () => {
+  const handleLogin = (data) => {
+    console.log("User:", data);
+  };
+
+  const [lang, setLang] = useState("uk");
 
   return (
     <div>
-      <button onClick={() => setClicks(clicks + 1)}>
-        You clicked {clicks} times
-      </button>
-      <button onClick={() => setClicks(0)}>Reset</button>
+      <h1>Authorization</h1>
+      <LoginForm onLogin={handleLogin} />
+
+      <SearchBar />
+
+      <p>Selected language: {lang}</p>
+      <LangSwitcher value={lang} onSelect={setLang} />
     </div>
   );
 };
