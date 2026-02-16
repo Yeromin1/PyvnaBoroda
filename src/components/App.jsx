@@ -7,6 +7,11 @@ import LoginForm from "./LoginForm/LoginForm";
 import SearchBar from "./SearchBar/SearchBar ";
 import Radio from "./Radio/Radio";
 import Checkbox from "./Checkbox/Checkbox";
+import Filter from "./Filter/Filter";
+import Task from "./FilterTask/FilterTask";
+import Form from "./FilterForm/FilterForm";
+import TasksList from "./FilterTasksList/FilterTasksList";
+import initialTasks from "../data/forbes.json";
 
 // export default function App() {
 //   return (
@@ -338,6 +343,25 @@ const App = () => {
 
   const [lang, setLang] = useState("uk");
 
+  const [tasks, setTasks] = useState(initialTasks);
+  const [filter, serFilter] = useState("");
+
+  const addTask = (newTask) => {
+    setTasks((prev) => {
+      return [...prev, newTask];
+    });
+  };
+
+  const visibleTasks = tasks.filter((task) =>
+    task.name.toLowerCase().includes(filter.toLowerCase()),
+  );
+
+  const deleteTask = (taskId) => {
+    setTasks((prev) => {
+      return prev.filter((task) => task.id !== taskId);
+    });
+  };
+
   return (
     <div>
       <h1>Authorization</h1>
@@ -351,6 +375,10 @@ const App = () => {
       <Radio />
 
       <Checkbox />
+
+      <Form onAdd={addTask} />
+      <Filter value={filter} onFilter={serFilter} />
+      <TasksList tasks={visibleTasks} onDelete={deleteTask} />
     </div>
   );
 };
