@@ -5,6 +5,8 @@ import { useState } from "react";
 import LangSwitcher from "./LangSwitcher/LangSwitcher";
 import LoginForm from "./LoginForm/LoginForm";
 import SearchBar from "./SearchBar/SearchBar ";
+import Radio from "./Radio/Radio";
+import Checkbox from "./Checkbox/Checkbox";
 
 // export default function App() {
 //   return (
@@ -345,6 +347,10 @@ const App = () => {
 
       <p>Selected language: {lang}</p>
       <LangSwitcher value={lang} onSelect={setLang} />
+
+      <Radio />
+
+      <Checkbox />
     </div>
   );
 };
