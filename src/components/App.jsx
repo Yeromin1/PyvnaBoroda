@@ -12,6 +12,7 @@ import Task from "./FilterTask/FilterTask";
 import Form from "./FilterForm/FilterForm";
 import TasksList from "./FilterTasksList/FilterTasksList";
 import initialTasks from "../data/forbes.json";
+import FeedbackForm from "./FilterForm/FilterForm";
 
 // export default function App() {
 //   return (
@@ -376,9 +377,11 @@ const App = () => {
 
       <Checkbox />
 
-      <Form onAdd={addTask} />
+      {/* <Form onAdd={addTask} /> */}
       <Filter value={filter} onFilter={serFilter} />
       <TasksList tasks={visibleTasks} onDelete={deleteTask} />
+
+      <FeedbackForm />
     </div>
   );
 };
