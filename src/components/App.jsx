@@ -14,6 +14,7 @@ import initialTasks from "../data/forbes.json";
 import FeedbackForm from "./FilterForm/FilterForm";
 import axios from "axios";
 import ArticleList from "./ArticleList/ArticleList";
+import { fetchArticlesWithTopic } from "../articles-api";
 
 // export default function App() {
 //   return (
@@ -367,13 +368,21 @@ const App = () => {
   // /*LESSON 4*/
 
   const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
   useEffect(() => {
     async function fetchArticles() {
-      const response = await axios.get(
-        "https://hn.algolia.com/api/v1/search?query=react",
-      );
-      setArticles(response.data.hits);
+      try {
+        setLoading(true);
+
+        const data = await fetchArticlesWithTopic("react");
+        setArticles(data);
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
     }
 
     fetchArticles();
@@ -402,6 +411,10 @@ const App = () => {
       {/* LESSON 4 */}
       <h2>Latest articles</h2>
 
+      {loading && <p>Loading data, please wait...</p>}
+      {error && (
+        <p>Whoops, something went wrong! Please try reloading this page!</p>
+      )}
       {articles.length > 0 && <ArticleList items={articles} />}
     </div>
   );
