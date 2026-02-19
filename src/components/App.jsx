@@ -1,7 +1,6 @@
 // import Product from "./Product.jsx";
-// import { useState, useEffect } from "react";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import LangSwitcher from "./LangSwitcher/LangSwitcher";
 import LoginForm from "./LoginForm/LoginForm";
 import SearchBar from "./SearchBar/SearchBar ";
@@ -13,6 +12,8 @@ import Form from "./FilterForm/FilterForm";
 import TasksList from "./FilterTasksList/FilterTasksList";
 import initialTasks from "../data/forbes.json";
 import FeedbackForm from "./FilterForm/FilterForm";
+import axios from "axios";
+import ArticleList from "./ArticleList/ArticleList";
 
 // export default function App() {
 //   return (
@@ -338,34 +339,49 @@ import FeedbackForm from "./FilterForm/FilterForm";
 // };
 
 const App = () => {
-  const handleLogin = (data) => {
-    console.log("User:", data);
-  };
+  // const handleLogin = (data) => {
+  //   console.log("User:", data);
+  // };
 
-  const [lang, setLang] = useState("uk");
+  // const [lang, setLang] = useState("uk");
 
-  const [tasks, setTasks] = useState(initialTasks);
-  const [filter, serFilter] = useState("");
+  // const [tasks, setTasks] = useState(initialTasks);
+  // const [filter, serFilter] = useState("");
 
-  const addTask = (newTask) => {
-    setTasks((prev) => {
-      return [...prev, newTask];
-    });
-  };
+  // const addTask = (newTask) => {
+  //   setTasks((prev) => {
+  //     return [...prev, newTask];
+  //   });
+  // };
 
-  const visibleTasks = tasks.filter((task) =>
-    task.name.toLowerCase().includes(filter.toLowerCase()),
-  );
+  // const visibleTasks = tasks.filter((task) =>
+  //   task.name.toLowerCase().includes(filter.toLowerCase()),
+  // );
 
-  const deleteTask = (taskId) => {
-    setTasks((prev) => {
-      return prev.filter((task) => task.id !== taskId);
-    });
-  };
+  // const deleteTask = (taskId) => {
+  //   setTasks((prev) => {
+  //     return prev.filter((task) => task.id !== taskId);
+  //   });
+  // };
+
+  // /*LESSON 4*/
+
+  const [articles, setArticles] = useState([]);
+
+  useEffect(() => {
+    async function fetchArticles() {
+      const response = await axios.get(
+        "https://hn.algolia.com/api/v1/search?query=react",
+      );
+      setArticles(response.data.hits);
+    }
+
+    fetchArticles();
+  }, []);
 
   return (
     <div>
-      <h1>Authorization</h1>
+      {/* <h1>Authorization</h1>
       <LoginForm onLogin={handleLogin} />
 
       <SearchBar />
@@ -377,11 +393,16 @@ const App = () => {
 
       <Checkbox />
 
-      {/* <Form onAdd={addTask} /> */}
+      <Form onAdd={addTask} />
       <Filter value={filter} onFilter={serFilter} />
       <TasksList tasks={visibleTasks} onDelete={deleteTask} />
 
-      <FeedbackForm />
+      <FeedbackForm /> */}
+
+      {/* LESSON 4 */}
+      <h2>Latest articles</h2>
+
+      {articles.length > 0 && <ArticleList items={articles} />}
     </div>
   );
 };
