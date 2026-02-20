@@ -16,6 +16,8 @@ import axios from "axios";
 import ArticleList from "./ArticleList/ArticleList";
 import { fetchArticlesWithTopic } from "../articles-api";
 import SearchForm from "./SearchForm/SearchForm";
+import Player from "./Player/Player";
+import UserMenu from "./UserMenu.jsx";
 
 // export default function App() {
 //   return (
@@ -462,5 +464,18 @@ import SearchForm from "./SearchForm/SearchForm";
 //     </>
 //   );
 // };
+
+// const App = () => {
+//   return <Player source="http://media.w3.org/2010/05/sintel/trailer.mp4" />;
+// };
+
+const App = () => {
+  return (
+    <div>
+      <h1>Context example</h1>
+      <UserMenu />
+    </div>
+  );
+};
 
 export default App;
