@@ -15,6 +15,7 @@ import FeedbackForm from "./FilterForm/FilterForm";
 import axios from "axios";
 import ArticleList from "./ArticleList/ArticleList";
 import { fetchArticlesWithTopic } from "../articles-api";
+import SearchForm from "./SearchForm/SearchForm";
 
 // export default function App() {
 //   return (
@@ -339,85 +340,127 @@ import { fetchArticlesWithTopic } from "../articles-api";
 //   );
 // };
 
-const App = () => {
-  // const handleLogin = (data) => {
-  //   console.log("User:", data);
-  // };
+// const App = () => {
+//   // const handleLogin = (data) => {
+//   //   console.log("User:", data);
+//   // };
 
-  // const [lang, setLang] = useState("uk");
+//   // const [lang, setLang] = useState("uk");
 
-  // const [tasks, setTasks] = useState(initialTasks);
-  // const [filter, serFilter] = useState("");
+//   // const [tasks, setTasks] = useState(initialTasks);
+//   // const [filter, serFilter] = useState("");
 
-  // const addTask = (newTask) => {
-  //   setTasks((prev) => {
-  //     return [...prev, newTask];
-  //   });
-  // };
+//   // const addTask = (newTask) => {
+//   //   setTasks((prev) => {
+//   //     return [...prev, newTask];
+//   //   });
+//   // };
 
-  // const visibleTasks = tasks.filter((task) =>
-  //   task.name.toLowerCase().includes(filter.toLowerCase()),
-  // );
+//   // const visibleTasks = tasks.filter((task) =>
+//   //   task.name.toLowerCase().includes(filter.toLowerCase()),
+//   // );
 
-  // const deleteTask = (taskId) => {
-  //   setTasks((prev) => {
-  //     return prev.filter((task) => task.id !== taskId);
-  //   });
-  // };
+//   // const deleteTask = (taskId) => {
+//   //   setTasks((prev) => {
+//   //     return prev.filter((task) => task.id !== taskId);
+//   //   });
+//   // };
 
-  // /*LESSON 4*/
+//   // /*LESSON 4*/
 
-  const [articles, setArticles] = useState([]);
-  const [loading, setLoading] = useState(false);
-  const [error, setError] = useState(false);
+//   const [articles, setArticles] = useState([]);
+//   const [loading, setLoading] = useState(false);
+//   const [error, setError] = useState(false);
 
-  useEffect(() => {
-    async function fetchArticles() {
-      try {
-        setLoading(true);
+//   useEffect(() => {
+//     async function fetchArticles() {
+//       try {
+//         setLoading(true);
 
-        const data = await fetchArticlesWithTopic("react");
-        setArticles(data);
-      } catch (error) {
-        setError(true);
-      } finally {
-        setLoading(false);
-      }
-    }
+//         const data = await fetchArticlesWithTopic("react");
+//         setArticles(data);
+//       } catch (error) {
+//         setError(true);
+//       } finally {
+//         setLoading(false);
+//       }
+//     }
 
-    fetchArticles();
-  }, []);
+//     fetchArticles();
+//   }, []);
 
-  return (
-    <div>
-      {/* <h1>Authorization</h1>
-      <LoginForm onLogin={handleLogin} />
+//   const handleSearch = async (topic) => {
+//     try {
+//       setArticles([]);
+//       setError(false);
+//       setLoading(true);
+//       const data = await fetchArticlesWithTopic(topic);
+//       setArticles(data);
+//     } catch (error) {
+//       setError(true);
+//     } finally {
+//       setLoading(false);
+//     }
+//   };
 
-      <SearchBar />
+//   return (
+//     <div>
+//       {/* <h1>Authorization</h1>
+//       <LoginForm onLogin={handleLogin} />
 
-      <p>Selected language: {lang}</p>
-      <LangSwitcher value={lang} onSelect={setLang} />
+//       <SearchBar />
 
-      <Radio />
+//       <p>Selected language: {lang}</p>
+//       <LangSwitcher value={lang} onSelect={setLang} />
 
-      <Checkbox />
+//       <Radio />
 
-      <Form onAdd={addTask} />
-      <Filter value={filter} onFilter={serFilter} />
-      <TasksList tasks={visibleTasks} onDelete={deleteTask} />
+//       <Checkbox />
 
-      <FeedbackForm /> */}
+//       <Form onAdd={addTask} />
+//       <Filter value={filter} onFilter={serFilter} />
+//       <TasksList tasks={visibleTasks} onDelete={deleteTask} />
 
-      {/* LESSON 4 */}
-      <h2>Latest articles</h2>
+//       <FeedbackForm /> */}
 
-      {loading && <p>Loading data, please wait...</p>}
-      {error && (
-        <p>Whoops, something went wrong! Please try reloading this page!</p>
-      )}
-      {articles.length > 0 && <ArticleList items={articles} />}
-    </div>
-  );
-};
+//       {/* LESSON 4 */}
+//       <h2>Latest articles</h2>
+
+//       <SearchForm onSearch={handleSearch} />
+
+//       {loading && <p>Loading data, please wait...</p>}
+//       {error && (
+//         <p>Whoops, something went wrong! Please try reloading this page!</p>
+//       )}
+//       {articles.length > 0 && <ArticleList items={articles} />}
+//     </div>
+//   );
+// };
+
+// import { useMemo } from "react";
+
+// const App = () => {
+//   const [planets, setPlanets] = useState(["Earth", "Mars", "Jupiter", "Venus"]);
+//   const [query, setQuery] = useState("");
+//   const [clicks, setClicks] = useState(0);
+
+//   const filteredPlanets = useMemo(
+//     () => planets.filter((planet) => planet.includes(query)),
+//     [planets, query],
+//   );
+
+//   return (
+//     <>
+//       <button onClick={() => setClicks(clicks + 1)}>
+//         Number of clicks: {clicks}
+//       </button>
+//       <ul>
+//         {filteredPlanets.map((planet) => (
+//           <li key={planet}>{planet}</li>
+//         ))}
+//       </ul>
+//     </>
+//   );
+// };
 
 export default App;
