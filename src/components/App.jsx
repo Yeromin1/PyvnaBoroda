@@ -248,6 +248,7 @@ import UserMenu from "./UserMenu.jsx";
 
 // import { useEffect, useState } from "react";
 
+// Модальное окно
 // const Modal = () => {
 //   useEffect(() => {
 //     // Зберігаємо ідентифікатор інтервалу в змінну
@@ -342,102 +343,102 @@ import UserMenu from "./UserMenu.jsx";
 //   );
 // };
 
-// const App = () => {
-//   // const handleLogin = (data) => {
-//   //   console.log("User:", data);
-//   // };
+const App = () => {
+  const handleLogin = (data) => {
+    console.log("User:", data);
+  };
 
-//   // const [lang, setLang] = useState("uk");
+  const [lang, setLang] = useState("uk");
 
-//   // const [tasks, setTasks] = useState(initialTasks);
-//   // const [filter, serFilter] = useState("");
+  const [tasks, setTasks] = useState(initialTasks);
+  const [filter, serFilter] = useState("");
 
-//   // const addTask = (newTask) => {
-//   //   setTasks((prev) => {
-//   //     return [...prev, newTask];
-//   //   });
-//   // };
+  const addTask = (newTask) => {
+    setTasks((prev) => {
+      return [...prev, newTask];
+    });
+  };
 
-//   // const visibleTasks = tasks.filter((task) =>
-//   //   task.name.toLowerCase().includes(filter.toLowerCase()),
-//   // );
+  const visibleTasks = tasks.filter((task) =>
+    task.name.toLowerCase().includes(filter.toLowerCase()),
+  );
 
-//   // const deleteTask = (taskId) => {
-//   //   setTasks((prev) => {
-//   //     return prev.filter((task) => task.id !== taskId);
-//   //   });
-//   // };
+  const deleteTask = (taskId) => {
+    setTasks((prev) => {
+      return prev.filter((task) => task.id !== taskId);
+    });
+  };
 
-//   // /*LESSON 4*/
+  // /*LESSON 4*/
 
-//   const [articles, setArticles] = useState([]);
-//   const [loading, setLoading] = useState(false);
-//   const [error, setError] = useState(false);
+  const [articles, setArticles] = useState([]);
+  const [loading, setLoading] = useState(false);
+  const [error, setError] = useState(false);
 
-//   useEffect(() => {
-//     async function fetchArticles() {
-//       try {
-//         setLoading(true);
+  useEffect(() => {
+    async function fetchArticles() {
+      try {
+        setLoading(true);
 
-//         const data = await fetchArticlesWithTopic("react");
-//         setArticles(data);
-//       } catch (error) {
-//         setError(true);
-//       } finally {
-//         setLoading(false);
-//       }
-//     }
+        const data = await fetchArticlesWithTopic("react");
+        setArticles(data);
+      } catch (error) {
+        setError(true);
+      } finally {
+        setLoading(false);
+      }
+    }
 
-//     fetchArticles();
-//   }, []);
+    fetchArticles();
+  }, []);
 
-//   const handleSearch = async (topic) => {
-//     try {
-//       setArticles([]);
-//       setError(false);
-//       setLoading(true);
-//       const data = await fetchArticlesWithTopic(topic);
-//       setArticles(data);
-//     } catch (error) {
-//       setError(true);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
+  const handleSearch = async (topic) => {
+    try {
+      setArticles([]);
+      setError(false);
+      setLoading(true);
+      const data = await fetchArticlesWithTopic(topic);
+      setArticles(data);
+    } catch (error) {
+      setError(true);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-//   return (
-//     <div>
-//       {/* <h1>Authorization</h1>
-//       <LoginForm onLogin={handleLogin} />
+  return (
+    <div>
+      <h1>Authorization</h1>
+      <LoginForm onLogin={handleLogin} />
 
-//       <SearchBar />
+      <SearchBar />
 
-//       <p>Selected language: {lang}</p>
-//       <LangSwitcher value={lang} onSelect={setLang} />
+      <p>Selected language: {lang}</p>
+      <LangSwitcher value={lang} onSelect={setLang} />
 
-//       <Radio />
+      <Radio />
 
-//       <Checkbox />
+      <Checkbox />
 
-//       <Form onAdd={addTask} />
-//       <Filter value={filter} onFilter={serFilter} />
-//       <TasksList tasks={visibleTasks} onDelete={deleteTask} />
+      <Form onAdd={addTask} />
+      <Filter value={filter} onFilter={serFilter} />
+      <TasksList tasks={visibleTasks} onDelete={deleteTask} />
 
-//       <FeedbackForm /> */}
+      <FeedbackForm />
 
-//       {/* LESSON 4 */}
-//       <h2>Latest articles</h2>
+      {/* LESSON 4 */}
+      <h2>Latest articles</h2>
 
-//       <SearchForm onSearch={handleSearch} />
+      <SearchForm onSearch={handleSearch} />
 
-//       {loading && <p>Loading data, please wait...</p>}
-//       {error && (
-//         <p>Whoops, something went wrong! Please try reloading this page!</p>
-//       )}
-//       {articles.length > 0 && <ArticleList items={articles} />}
-//     </div>
-//   );
-// };
+      {loading && <p>Loading data, please wait...</p>}
+      {error && (
+        <p>Whoops, something went wrong! Please try reloading this page!</p>
+      )}
+      {articles.length > 0 && <ArticleList items={articles} />}
+    </div>
+  );
+};
 
 // import { useMemo } from "react";
 
@@ -469,13 +470,13 @@ import UserMenu from "./UserMenu.jsx";
 //   return <Player source="http://media.w3.org/2010/05/sintel/trailer.mp4" />;
 // };
 
-const App = () => {
-  return (
-    <div>
-      <h1>Context example</h1>
-      <UserMenu />
-    </div>
-  );
-};
+// const App = () => {
+//   return (
+//     <div>
+//       <h1>Context example</h1>
+//       <UserMenu />
+//     </div>
+//   );
+// };
 
 export default App;
