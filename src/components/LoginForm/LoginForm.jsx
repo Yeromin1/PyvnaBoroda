@@ -1,6 +1,9 @@
-import { useId, useState } from "react";
+import { useContext, useId, useState } from "react";
+import { authContext } from "../context/Authorization/Authorization";
 
 const LoginForm = ({ onLogin }) => {
+  const { logins } = useContext(authContext);
+  const [username, setUsername] = useState("");
   const loginId = useId();
   const passwordId = useId();
 
@@ -16,12 +19,18 @@ const LoginForm = ({ onLogin }) => {
     });
 
     form.reset();
+    logins(username);
   };
 
   return (
     <form onSubmit={handleSubmit}>
       <label htmlFor={loginId}>Login</label>
-      <input id={loginId} type="text" name="login" />
+      <input
+        onChange={(e) => setUsername(e.target.value)}
+        id={loginId}
+        type="text"
+        name="login"
+      />
 
       <label htmlFor={passwordId}>Password</label>
       <input id={passwordId} type="password" name="password" />

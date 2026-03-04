@@ -1,6 +1,6 @@
 // import Product from "./Product.jsx";
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import LangSwitcher from "./LangSwitcher/LangSwitcher";
 import LoginForm from "./LoginForm/LoginForm";
 import SearchBar from "./SearchBar/SearchBar ";
@@ -18,6 +18,8 @@ import { fetchArticlesWithTopic } from "../articles-api";
 import SearchForm from "./SearchForm/SearchForm";
 import Player from "./Player/Player";
 import UserMenu from "./UserMenu.jsx";
+import Header from "./Header/Header.jsx";
+import { authContext } from "./context/Authorization/Authorization.jsx";
 
 // export default function App() {
 //   return (
@@ -406,10 +408,17 @@ const App = () => {
     }
   };
 
+  //Authorization Header LoginForm
+  const { user } = useContext(authContext);
+  if (!user) {
+    return <LoginForm onLogin={handleLogin} />;
+  }
+
   return (
     <div>
+      <Header />
+
       <h1>Authorization</h1>
-      <LoginForm onLogin={handleLogin} />
 
       <SearchBar />
 
@@ -419,6 +428,8 @@ const App = () => {
       <Radio />
 
       <Checkbox />
+
+      <LoginForm onLogin={handleLogin} />
 
       <Form onAdd={addTask} />
       <Filter value={filter} onFilter={serFilter} />
